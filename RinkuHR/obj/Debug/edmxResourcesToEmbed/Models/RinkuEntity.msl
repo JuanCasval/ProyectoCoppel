@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RinkuHRModelStoreContainer" CdmEntityContainer="RinkuHREntities">
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="RinkuHRModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="SueldoBase" ColumnName="SueldoBase" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Months">
+      <EntityTypeMapping TypeName="RinkuHRModel.Months">
+        <MappingFragment StoreEntitySet="Months">
+          <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movimientos">
+      <EntityTypeMapping TypeName="RinkuHRModel.Movimientos">
+        <MappingFragment StoreEntitySet="Movimientos">
+          <ScalarProperty Name="IdMovimiento" ColumnName="IdMovimiento" />
+          <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="Cantidad_entregas" ColumnName="Cantidad_entregas" />
+          <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="RinkuHRModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Bono" ColumnName="Bono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="BuscarId" FunctionName="RinkuHRModel.Store.BuscarId" />
+    <FunctionImportMapping FunctionImportName="BuscarMov" FunctionName="RinkuHRModel.Store.BuscarMov">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RinkuHRModel.BuscarMov_Result">
+          <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ConsultaSueldos" FunctionName="RinkuHRModel.Store.ConsultaSueldos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RinkuHRModel.ConsultaSueldos_Result">
+          <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="SueldoMensual" ColumnName="SueldoMensual" />
+          <ScalarProperty Name="PagoEntregas" ColumnName="PagoEntregas" />
+          <ScalarProperty Name="BonoHora" ColumnName="BonoHora" />
+          <ScalarProperty Name="RetencionIsr" ColumnName="RetencionIsr" />
+          <ScalarProperty Name="ValesDespensa" ColumnName="ValesDespensa" />
+          <ScalarProperty Name="SueldoTotal" ColumnName="SueldoTotal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteEmployee" FunctionName="RinkuHRModel.Store.DeleteEmployee" />
+    <FunctionImportMapping FunctionImportName="SaveEmployee" FunctionName="RinkuHRModel.Store.SaveEmployee" />
+    <FunctionImportMapping FunctionImportName="SaveMovimiento" FunctionName="RinkuHRModel.Store.SaveMovimiento" />
+  </EntityContainerMapping>
+</Mapping>

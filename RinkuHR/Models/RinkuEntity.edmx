@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RinkuHRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IdEmployee" />
+          </Key>
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="IdRole" Type="int" />
+          <Property Name="SueldoBase" Type="float" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Months">
+          <Key>
+            <PropertyRef Name="IdMes" />
+          </Key>
+          <Property Name="IdMes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Movimientos">
+          <Key>
+            <PropertyRef Name="IdMovimiento" />
+          </Key>
+          <Property Name="IdMovimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="Cantidad_entregas" Type="int" />
+          <Property Name="IdMes" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Bono" Type="float" />
+        </EntityType>
+        <Association Name="FK_EmployeeRole">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovEmployee">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IdEmployee" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovMonth">
+          <End Role="Months" Type="Self.Months" Multiplicity="0..1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Months">
+              <PropertyRef Name="IdMes" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="IdMes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovRole">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BuscarId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmployee" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BuscarMov" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmployee" Type="int" Mode="In" />
+          <Parameter Name="IdMes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ConsultaSueldos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmployee" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SaveEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmployee" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="IdRol" Type="int" Mode="In" />
+          <Parameter Name="Sueldo" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SaveMovimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmployee" Type="int" Mode="In" />
+          <Parameter Name="IdRol" Type="int" Mode="In" />
+          <Parameter Name="CantidadEntregas" Type="int" Mode="In" />
+          <Parameter Name="Mes" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="RinkuHRModelStoreContainer">
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Months" EntityType="Self.Months" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movimientos" EntityType="Self.Movimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmployeeRole" Association="Self.FK_EmployeeRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovEmployee" Association="Self.FK_MovEmployee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovMonth" Association="Self.FK_MovMonth">
+            <End Role="Months" EntitySet="Months" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovRole" Association="Self.FK_MovRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RinkuHRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IdEmployee" />
+          </Key>
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdRole" Type="Int32" />
+          <Property Name="SueldoBase" Type="Double" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_EmployeeRole" FromRole="Employees" ToRole="Roles" />
+          <NavigationProperty Name="Movimientos" Relationship="Self.FK_MovEmployee" FromRole="Employees" ToRole="Movimientos" />
+        </EntityType>
+        <EntityType Name="Months">
+          <Key>
+            <PropertyRef Name="IdMes" />
+          </Key>
+          <Property Name="IdMes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movimientos" Relationship="Self.FK_MovMonth" FromRole="Months" ToRole="Movimientos" />
+        </EntityType>
+        <EntityType Name="Movimientos">
+          <Key>
+            <PropertyRef Name="IdMovimiento" />
+          </Key>
+          <Property Name="IdMovimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad_entregas" Type="Int32" />
+          <Property Name="IdMes" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_MovEmployee" FromRole="Movimientos" ToRole="Employees" />
+          <NavigationProperty Name="Months" Relationship="Self.FK_MovMonth" FromRole="Movimientos" ToRole="Months" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_MovRole" FromRole="Movimientos" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bono" Type="Double" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_EmployeeRole" FromRole="Roles" ToRole="Employees" />
+          <NavigationProperty Name="Movimientos" Relationship="Self.FK_MovRole" FromRole="Roles" ToRole="Movimientos" />
+        </EntityType>
+        <Association Name="FK_EmployeeRole">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovEmployee">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IdEmployee" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovMonth">
+          <End Role="Months" Type="Self.Months" Multiplicity="0..1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Months">
+              <PropertyRef Name="IdMes" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="IdMes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovRole">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="Movimientos">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RinkuHREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Months" EntityType="Self.Months" />
+          <EntitySet Name="Movimientos" EntityType="Self.Movimientos" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <AssociationSet Name="FK_EmployeeRole" Association="Self.FK_EmployeeRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovEmployee" Association="Self.FK_MovEmployee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovMonth" Association="Self.FK_MovMonth">
+            <End Role="Months" EntitySet="Months" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovRole" Association="Self.FK_MovRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Movimientos" EntitySet="Movimientos" />
+          </AssociationSet>
+          <FunctionImport Name="BuscarId" ReturnType="Collection(Int32)">
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BuscarMov" ReturnType="Collection(RinkuHRModel.BuscarMov_Result)">
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+            <Parameter Name="IdMes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultaSueldos" ReturnType="Collection(RinkuHRModel.ConsultaSueldos_Result)">
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteEmployee">
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SaveEmployee">
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="Sueldo" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="SaveMovimiento">
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadEntregas" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="BuscarMov_Result">
+          <Property Type="Int32" Name="IdEmployee" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdMes" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultaSueldos_Result">
+          <Property Type="Int32" Name="IdEmployee" Nullable="true" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="SueldoMensual" Nullable="true" />
+          <Property Type="Int32" Name="PagoEntregas" Nullable="true" />
+          <Property Type="Double" Name="BonoHora" Nullable="true" />
+          <Property Type="Double" Name="RetencionIsr" Nullable="true" />
+          <Property Type="Double" Name="ValesDespensa" Nullable="true" />
+          <Property Type="Double" Name="SueldoTotal" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RinkuHRModelStoreContainer" CdmEntityContainer="RinkuHREntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="RinkuHRModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="SueldoBase" ColumnName="SueldoBase" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Months">
+            <EntityTypeMapping TypeName="RinkuHRModel.Months">
+              <MappingFragment StoreEntitySet="Months">
+                <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimientos">
+            <EntityTypeMapping TypeName="RinkuHRModel.Movimientos">
+              <MappingFragment StoreEntitySet="Movimientos">
+                <ScalarProperty Name="IdMovimiento" ColumnName="IdMovimiento" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Cantidad_entregas" ColumnName="Cantidad_entregas" />
+                <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="RinkuHRModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Bono" ColumnName="Bono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BuscarId" FunctionName="RinkuHRModel.Store.BuscarId" />
+          <FunctionImportMapping FunctionImportName="BuscarMov" FunctionName="RinkuHRModel.Store.BuscarMov">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RinkuHRModel.BuscarMov_Result">
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultaSueldos" FunctionName="RinkuHRModel.Store.ConsultaSueldos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RinkuHRModel.ConsultaSueldos_Result">
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="SueldoMensual" ColumnName="SueldoMensual" />
+                <ScalarProperty Name="PagoEntregas" ColumnName="PagoEntregas" />
+                <ScalarProperty Name="BonoHora" ColumnName="BonoHora" />
+                <ScalarProperty Name="RetencionIsr" ColumnName="RetencionIsr" />
+                <ScalarProperty Name="ValesDespensa" ColumnName="ValesDespensa" />
+                <ScalarProperty Name="SueldoTotal" ColumnName="SueldoTotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DeleteEmployee" FunctionName="RinkuHRModel.Store.DeleteEmployee" />
+          <FunctionImportMapping FunctionImportName="SaveEmployee" FunctionName="RinkuHRModel.Store.SaveEmployee" />
+          <FunctionImportMapping FunctionImportName="SaveMovimiento" FunctionName="RinkuHRModel.Store.SaveMovimiento" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
