@@ -51,6 +51,9 @@
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -88,9 +91,6 @@
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -171,22 +171,15 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\RinkuEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RinkuEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\RinkuEntity.edmx.diagram">
-      <DependentUpon>RinkuEntity.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\RinkuEntity.Context.tt">
+    <Content Include="Models\RinkuHR.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RinkuEntity.edmx</DependentUpon>
-      <LastGenOutput>RinkuEntity.Context.cs</LastGenOutput>
+      <DependentUpon>RinkuHR.edmx</DependentUpon>
+      <LastGenOutput>RinkuHR.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\RinkuEntity.tt">
+    <Content Include="Models\RinkuHR.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RinkuEntity.edmx</DependentUpon>
-      <LastGenOutput>RinkuEntity.cs</LastGenOutput>
+      <DependentUpon>RinkuHR.edmx</DependentUpon>
+      <LastGenOutput>RinkuHR.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Ajax-Doc.js" />
     <Content Include="Scripts\Ajax-UI.js" />
@@ -194,7 +187,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\materialize.js" />
-    <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -236,6 +228,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Clases\Empleados.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,37 +249,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BuscarMov_Result.cs">
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ConsultaSueldos_Result.cs">
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employees.cs">
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Months.cs">
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movimientos.cs">
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RinkuEntity.Context.cs">
+    <Compile Include="Models\RinkuHR.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RinkuEntity.Context.tt</DependentUpon>
+      <DependentUpon>RinkuHR.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RinkuEntity.cs">
+    <Compile Include="Models\RinkuHR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RinkuEntity.Designer.cs">
+    <Compile Include="Models\RinkuHR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RinkuEntity.edmx</DependentUpon>
+      <DependentUpon>RinkuHR.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
-      <DependentUpon>RinkuEntity.tt</DependentUpon>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -319,10 +312,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Movimientos\" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\RinkuHR.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RinkuHR.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RinkuHR.edmx.diagram">
+      <DependentUpon>RinkuHR.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

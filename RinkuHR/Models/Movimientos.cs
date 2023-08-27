@@ -15,6 +15,7 @@ namespace RinkuHR.Models
     public partial class Movimientos
     {
         public int IdMovimiento { get; set; }
+        public int Id { get; set; }
         public int IdEmployee { get; set; }
         public string Nombre { get; set; }
         public int IdRole { get; set; }

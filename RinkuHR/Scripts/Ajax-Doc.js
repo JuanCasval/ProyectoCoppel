@@ -1,6 +1,11 @@
-﻿/*$(document).ready(function () {
+﻿$(document).ready(function () {
+    // Or with jQuery
+
+    
+    $('.sidenav').sidenav();
+
     $.ajax({
-        url: "api/Prospect/Get",
+        url: "../api/employees/GetAll",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -8,9 +13,16 @@
             if (result.length > 0) {
                 $.each(result, function (i, item) {
 
-                    $("#contenido").append("<tr><td class='center-align'>" + item.Nombre + "</td><td class='center-align'>" + item.App + "</td><td class='center-align'>"
-                        + item.Apm + "</td><td class='center-align'>" + item.Estatus + "</td><td class='centered center-align'><a name='Ver Datos' href='#modal1' class='btn-floating btn waves-effect waves-light blue white-text modal-trigger' onclick='verDatos(" + item.Id + ")')><i class='material-icons large'>info_outline</i></a>" +
-                        "&nbsp;<a name='Evaluar' href='Evaluacion.aspx?Id= " + item.Id + "' class='btn-floating btn waves-effect waves-light yellow darken-4'><i class='material-icons large'>border_color</i></a></td ></tr > ");
+                    $("#Contenedor").append(
+                        "<tr>" +
+                        "<td>" + item.IdEmployee + "</td>" +
+                        "<td>" + item.Nombre + "</td>" +
+                        "<td>" + item.Role + "</td>" +
+                        "<td>$" + item.SueldoBase + "</td>" +
+                        "<td><a name='Ver Datos' href='#modal1' class='btn-floating btn waves-effect waves-light blue white-text modal-trigger' onclick='verDatos(" + item.Id + ")')><i class='material-icons large'>info_outline</i></a></td>" +
+                        "</tr > "
+
+                    );
 
                 });
             } else {
@@ -23,7 +35,7 @@
         }
 
     });
-});*/
+});
 
 
 function verDatos(Id) {
@@ -85,4 +97,39 @@ function verDatos(Id) {
             alert(error);
         }
     });*/
+}
+
+
+function verData() {
+    $.ajax({
+        url: "../api/employees/GetAll",
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            if (result.length > 0) {
+                $.each(result, function (i, item) {
+
+                    $("#Contenedor").append(
+                        "<tr>" +
+                        "<td class='center-align'>" + item.IdEmployee + "</td>" +
+                            "<td class='center-align'>" + item.Nombre + "</td>" +
+                            "<td class='center-align'>" + item.Role + "</td>" +
+                            "<td class='center-align'>$" + item.SueldoBase + "</td>" +
+                        
+                        "</tr > "
+
+                    );
+
+                });
+            } else {
+                $("#contenido").append("<tr><td class='center-align col s12'>No existen prospectos registrados actualmente</td></tr>");
+            }
+
+        },
+        error: function () {
+            alert(error);
+        }
+
+    });
 }

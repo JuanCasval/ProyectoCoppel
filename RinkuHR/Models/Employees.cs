@@ -9,6 +9,7 @@
 
 namespace RinkuHR.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -20,14 +21,15 @@ namespace RinkuHR.Models
             this.Movimientos = new HashSet<Movimientos>();
         }
     
+        public int Id { get; set; }
         public int IdEmployee { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> IdRole { get; set; }
         public Nullable<double> SueldoBase { get; set; }
-        public string estado { get; set; }
-    
+       
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<Movimientos> Movimientos { get; set; }
     }
 }
