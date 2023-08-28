@@ -179,7 +179,7 @@
     <Content Include="Models\RinkuHR.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RinkuHR.edmx</DependentUpon>
-      <LastGenOutput>RinkuHR1.cs</LastGenOutput>
+      <LastGenOutput>RinkuHR.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\General.js" />
     <Content Include="Scripts\Ajax-UI.js" />
@@ -216,6 +216,7 @@
     <Content Include="Views\General.aspx" />
     <Content Include="Views\Movements.aspx" />
     <Content Include="Views\NewEmployee.aspx" />
+    <Content Include="Views\Salarys.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -273,15 +274,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RinkuHR.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RinkuHR.Designer.cs">
-      <DependentUpon>RinkuHR.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Models\RinkuHR1.cs">
+    <Compile Include="Models\RinkuHR.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RinkuHR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RinkuHR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RinkuHR.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>RinkuHR.tt</DependentUpon>
@@ -328,6 +329,13 @@
     </Compile>
     <Compile Include="Views\NewEmployee.aspx.designer.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Salarys.aspx.cs">
+      <DependentUpon>Salarys.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Salarys.aspx.designer.cs">
+      <DependentUpon>Salarys.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

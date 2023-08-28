@@ -15,6 +15,8 @@ namespace RinkuHR.Models
     {
         public Nullable<int> IdEmployee { get; set; }
         public string Nombre { get; set; }
+        public int HorasTrabajadas { get; set; }
+        public string Rol { get; set; }
         public Nullable<double> SueldoMensual { get; set; }
         public Nullable<int> PagoEntregas { get; set; }
         public Nullable<double> BonoHora { get; set; }

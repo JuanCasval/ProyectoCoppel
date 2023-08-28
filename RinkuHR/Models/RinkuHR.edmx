@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RinkuHRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RinkuHRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="Id" />
@@ -138,7 +138,8 @@
             <End Role="Movimientos" EntitySet="Movimientos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RinkuHRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -259,17 +260,17 @@
             <End Role="Movimientos" EntitySet="Movimientos" />
           </AssociationSet>
           <FunctionImport Name="BuscarId" ReturnType="Collection(Int32)">
-          <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="BuscarMov" ReturnType="Collection(RinkuHRModel.BuscarMov_Result)">
             <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
             <Parameter Name="IdMes" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultaSueldos" ReturnType="Collection(RinkuHRModel.ConsultaSueldos_Result)">
-          <Parameter Name="Mes" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteEmployee">
-          <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
+            <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SaveEmployee">
             <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
@@ -291,6 +292,8 @@
         <ComplexType Name="ConsultaSueldos_Result">
           <Property Type="Int32" Name="IdEmployee" Nullable="true" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="HorasTrabajadas" Nullable="false" />
+          <Property Type="String" Name="Rol" Nullable="true" MaxLength="50" />
           <Property Type="Double" Name="SueldoMensual" Nullable="true" />
           <Property Type="Int32" Name="PagoEntregas" Nullable="true" />
           <Property Type="Double" Name="BonoHora" Nullable="true" />
@@ -362,6 +365,8 @@
               <ComplexTypeMapping TypeName="RinkuHRModel.ConsultaSueldos_Result">
                 <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="HorasTrabajadas" ColumnName="HorasTrabajadas" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
                 <ScalarProperty Name="SueldoMensual" ColumnName="SueldoMensual" />
                 <ScalarProperty Name="PagoEntregas" ColumnName="PagoEntregas" />
                 <ScalarProperty Name="BonoHora" ColumnName="BonoHora" />
