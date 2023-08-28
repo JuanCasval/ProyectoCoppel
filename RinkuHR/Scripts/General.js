@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function () { //Se carga la tabla principal de empleados
     $('.sidenav').sidenav();
 
     $.ajax({
@@ -30,6 +30,7 @@
     });
 });
 
+//Se buscan los movimientos realizados por el empleado.
 function verMovimientos(Id, IdEmployee) {
     $('.modal-content').empty();
     $.ajax({

@@ -94,6 +94,7 @@ function btnCancel() {
     $('#question').append('Esta seguro que desea cancelar el registro?, se perderan los cambios');
 }
 
+//Validaciones
 function valideKey(evt) {
 
     var code = (evt.which) ? evt.which : evt.keyCode;

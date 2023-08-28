@@ -12,7 +12,7 @@
     <script src="../Scripts/materialize.js"></script>
     <title>RinkuHR - Movimientos</title>
 </head>
-<body style="background-color:beige;">
+<body>
      <header>
          <!-- Modal Structure -->
     <div id="modal_result" class="modal col s6 " disableBackdropClick>

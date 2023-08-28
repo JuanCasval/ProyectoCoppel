@@ -25,7 +25,7 @@
     </div>
 
     <div id="modal_question" class="modal col s6 " disableBackdropClick>
-        <div class="question-content" id="mod-question">
+        <div class="modal-content" id="mod-question">
           <h4 id="question"></h4>
         </div>
         <div class="modal-footer">

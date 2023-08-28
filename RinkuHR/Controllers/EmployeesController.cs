@@ -14,8 +14,7 @@ namespace RinkuHR.Controllers
     public class EmployeesController : ApiController
     {
         RinkuHREntities db = new RinkuHREntities();
-        Employees _employees = new Employees();
-
+        //Se obtiene el listado de todos los empleados
         // GET: api/Employees/GetAll
         [HttpGet]
         [Route("api/employees/GetAll")]
@@ -36,7 +35,7 @@ namespace RinkuHR.Controllers
             employeesData = queryEmployees.ToList(); 
             return employeesData;
         }
-
+        //Se obtiene un unico empleado mediante su numero de empleado validando su existencia y tomando sus datos.
         // GET: api/Employees
         [HttpGet]
         [Route("api/employees/GetWithId")]
@@ -59,6 +58,9 @@ namespace RinkuHR.Controllers
             return employeesData;
         }
 
+
+        //Se guarda el nuevo empleado, validando su existencia utilizando su numero de empleado y el procedimiento almacenado de BuscarID
+        //y el procedimiento almacenado SaveEmployee
         // POST: api/Employees/SaveEmployee
         [HttpPost]
         [Route("api/employees/SaveEmployee")]
@@ -92,6 +94,15 @@ namespace RinkuHR.Controllers
             return obj;
         }
 
-      
+        //Se ejecuta el procedimiento almacenado ConsultaSueldos para obtener los calculos desde la base de datos y mostrarlos al usuario
+        // GET: api/Employees/GetSueldos
+        [HttpGet]
+        [Route("api/employees/GetSueldos")]
+        public IEnumerable<ConsultaSueldos_Result> GetSueldos(int IdMes)
+        {
+            var queryEmployees = db.ConsultaSueldos(IdMes).ToList();
+            return queryEmployees;
+        }
+
     }
 }

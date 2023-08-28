@@ -149,6 +149,8 @@
   <ComplexType Name="ConsultaSueldos_Result">
     <Property Type="Int32" Name="IdEmployee" Nullable="true" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="HorasTrabajadas" Nullable="false" />
+    <Property Type="String" Name="Rol" Nullable="true" MaxLength="50" />
     <Property Type="Double" Name="SueldoMensual" Nullable="true" />
     <Property Type="Int32" Name="PagoEntregas" Nullable="true" />
     <Property Type="Double" Name="BonoHora" Nullable="true" />

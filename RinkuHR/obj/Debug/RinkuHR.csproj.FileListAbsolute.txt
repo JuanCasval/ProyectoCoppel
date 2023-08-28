@@ -104,4 +104,3 @@ C:\Users\JuanP\Documents\Coppel\RinkuHR\obj\Debug\RinkuHR.csproj.CoreCompileInpu
 C:\Users\JuanP\Documents\Coppel\RinkuHR\obj\Debug\RinkuHR.csproj.CopyComplete
 C:\Users\JuanP\Documents\Coppel\RinkuHR\obj\Debug\RinkuHR.dll
 C:\Users\JuanP\Documents\Coppel\RinkuHR\obj\Debug\RinkuHR.pdb
-C:\Users\JuanP\Documents\Coppel\RinkuHR\obj\Debug\RinkuHR.csproj.AssemblyReference.cache

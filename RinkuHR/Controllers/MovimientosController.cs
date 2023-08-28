@@ -12,8 +12,8 @@ namespace RinkuHR.Controllers
     public class MovimientosController : ApiController
     {
         RinkuHREntities db = new RinkuHREntities();
-        Movimientos movement = new Movimientos();
 
+        //Se obtienen todos los movimientos realizados. Solo se creo para realizar pruebas
         // GET: api/Employees/GetAll
         [HttpGet]
         [Route("api/movements/GetAll")]
@@ -37,6 +37,7 @@ namespace RinkuHR.Controllers
             return employeesData;
         }
 
+        //Se obtienen los movimientos mediante el Id del empleado.
         // GET: api/Employees/GetById
         [HttpGet]
         [Route("api/movements/GetById")]
@@ -62,7 +63,9 @@ namespace RinkuHR.Controllers
             return movementsData;
         }
 
-        // POST: api/movimientos/SaveMovimiento/int IdEmpleado, int IdRole, int CantidadEntregas, int Mes
+        //Se almacena el movimiento del usuario, mediante el uso del store procedure SaveMovimiento y validando la existencia de registros
+        //ya realizados en el mes y año
+        // POST: api/movimientos/SaveMovimiento
         [HttpPost]
         [Route("api/movimientos/SaveMovimiento")]
         public Movimiento SaveMovimiento(Movimiento mov)
@@ -94,6 +97,7 @@ namespace RinkuHR.Controllers
             movement = queryMovements.FirstOrDefault();
             if(movement == null)
             {
+                //Ejecucion de Store Procedure
                 db.SaveMovimiento(IdEmployee, IdRole, Cantidad_entregas, IdMes);
                 db.SaveChanges();
                 var queryMoves = from a in db.Movimientos

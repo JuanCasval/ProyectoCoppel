@@ -59,6 +59,8 @@
         <ComplexTypeMapping TypeName="RinkuHRModel.ConsultaSueldos_Result">
           <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="HorasTrabajadas" ColumnName="HorasTrabajadas" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
           <ScalarProperty Name="SueldoMensual" ColumnName="SueldoMensual" />
           <ScalarProperty Name="PagoEntregas" ColumnName="PagoEntregas" />
           <ScalarProperty Name="BonoHora" ColumnName="BonoHora" />

@@ -125,6 +125,7 @@ function reload() {
     location.reload();
 }
 
+//Validaciones
 function valideKey(evt) {
 
     var code = (evt.which) ? evt.which : evt.keyCode;
