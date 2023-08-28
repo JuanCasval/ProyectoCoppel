@@ -6,9 +6,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdEmployee" Type="Int32" Nullable="false" />
-    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="IdRole" Type="Int32" />
-    <Property Name="SueldoBase" Type="Double" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdRole" Type="Int32" Nullable="false" />
+    <Property Name="SueldoBase" Type="Double" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="Roles" Relationship="Self.FK_EmployeeRole" FromRole="Employees" ToRole="Roles" />
     <NavigationProperty Name="Movimientos" Relationship="Self.FK_MovEmployee" FromRole="Employees" ToRole="Movimientos" />
   </EntityType>
@@ -17,7 +18,7 @@
       <PropertyRef Name="IdMes" />
     </Key>
     <Property Name="IdMes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Movimientos" Relationship="Self.FK_MovMonth" FromRole="Months" ToRole="Movimientos" />
   </EntityType>
   <EntityType Name="Movimientos">
@@ -28,9 +29,10 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="IdEmployee" Type="Int32" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="IdRole" Type="Int32" Nullable="false" />
-    <Property Name="Cantidad_entregas" Type="Int32" />
-    <Property Name="IdMes" Type="Int32" />
+    <Property Name="IdRole" Type="Int32" />
+    <Property Name="Cantidad_entregas" Type="Int32" Nullable="false" />
+    <Property Name="IdMes" Type="Int32" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Employees" Relationship="Self.FK_MovEmployee" FromRole="Movimientos" ToRole="Employees" />
     <NavigationProperty Name="Months" Relationship="Self.FK_MovMonth" FromRole="Movimientos" ToRole="Months" />
     <NavigationProperty Name="Roles" Relationship="Self.FK_MovRole" FromRole="Movimientos" ToRole="Roles" />
@@ -40,13 +42,13 @@
       <PropertyRef Name="IdRole" />
     </Key>
     <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Bono" Type="Double" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Bono" Type="Double" Nullable="false" />
     <NavigationProperty Name="Employees" Relationship="Self.FK_EmployeeRole" FromRole="Roles" ToRole="Employees" />
     <NavigationProperty Name="Movimientos" Relationship="Self.FK_MovRole" FromRole="Roles" ToRole="Movimientos" />
   </EntityType>
   <Association Name="FK_EmployeeRole">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roles">
@@ -70,7 +72,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MovMonth">
-    <End Role="Months" Type="Self.Months" Multiplicity="0..1" />
+    <End Role="Months" Type="Self.Months" Multiplicity="1" />
     <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Months">
@@ -82,7 +84,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MovRole">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
     <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roles">
@@ -143,7 +145,7 @@
   <ComplexType Name="BuscarMov_Result">
     <Property Type="Int32" Name="IdEmployee" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="IdMes" Nullable="true" />
+    <Property Type="Int32" Name="IdMes" Nullable="false" />
   </ComplexType>
   <ComplexType Name="ConsultaSueldos_Result">
     <Property Type="Int32" Name="IdEmployee" Nullable="true" />

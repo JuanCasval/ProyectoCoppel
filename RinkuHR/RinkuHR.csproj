@@ -179,7 +179,7 @@
     <Content Include="Models\RinkuHR.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RinkuHR.edmx</DependentUpon>
-      <LastGenOutput>RinkuHR.cs</LastGenOutput>
+      <LastGenOutput>RinkuHR1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Ajax-Doc.js" />
     <Content Include="Scripts\Ajax-UI.js" />
@@ -212,6 +212,7 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\General.aspx" />
+    <Content Include="Views\NewEmployee.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -268,15 +269,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RinkuHR.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RinkuHR.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RinkuHR.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\RinkuHR.Designer.cs">
+      <DependentUpon>RinkuHR.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RinkuHR.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>RinkuHR.tt</DependentUpon>
@@ -310,12 +306,15 @@
     <Compile Include="Views\General.aspx.designer.cs">
       <DependentUpon>General.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewEmployee.aspx.cs">
+      <DependentUpon>NewEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NewEmployee.aspx.designer.cs">
+      <DependentUpon>NewEmployee.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-    <Folder Include="Views\Default\" />
-    <Folder Include="Views\Movimientos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Models\RinkuHR.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

@@ -21,6 +21,7 @@
             <a href="#!" class="brand-logo">RinkuHR</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                <li><a href="../NewEmployee.aspx"> Añadir empleado </a></li>
                 <li><a href="../Default.aspx"> Registrar movimiento </a></li>
                 <li><a href="../Contact.aspx"> Sueldos </a></li>
             </ul>
@@ -29,8 +30,9 @@
 
 
           <ul class="sidenav" id="mobile-demo">
-             <li><a href="../Default.aspx"> Registrar movimiento </a></li>
-             <li><a href="../Contact.aspx"> Sueldos </a></li>
+             <li><a href="NewEmployee.aspx"> Añadir empleado </a></li>
+             <li><a href="Default.aspx"> Registrar movimiento </a></li>
+             <li><a href="Contact.aspx"> Sueldos </a></li>
           </ul>
     </header>
      <div class="container">
@@ -38,13 +40,15 @@
         </div>
     <form id="form1" runat="server">
         <div class="container" >
+            <a class="waves-effect blue darken-3 waves-light btn" href="NewEmployee.aspx"><i class="material-icons left">add_circle</i>Añadir empleado</a>
+            <br />
             <table id="Contenedor" class="Contenedor highlight responsive-table">
                 <tr>
                     <th>Número de Empleado</th>
                     <th>Nombre</th>
                     <th>Rol</th>
                     <th>Sueldo Base</th>
-
+                   
                 </tr>
             </table>
         </div>

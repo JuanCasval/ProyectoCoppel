@@ -19,14 +19,14 @@
                         "<td>" + item.Nombre + "</td>" +
                         "<td>" + item.Role + "</td>" +
                         "<td>$" + item.SueldoBase + "</td>" +
-                        "<td><a name='Ver Datos' href='#modal1' class='btn-floating btn waves-effect waves-light blue white-text modal-trigger' onclick='verDatos(" + item.Id + ")')><i class='material-icons large'>info_outline</i></a></td>" +
+                        "<td><a name='Ver Movimientos' href='#modal1' class='btn waves-effect waves-light black white-text modal-trigger' onclick='verDatos(" + item.Id + ")')>Ver Movimientos<i class='material-icons left'>list</i></a></td>" +
                         "</tr > "
 
                     );
 
                 });
             } else {
-                $("#contenido").append("<tr><td class='center-align col s12'>No existen prospectos registrados actualmente</td></tr>");
+                $("#Contenedor").append("<tr><td class='center-align col s12'>No existen empleados registrados actualmente</td></tr>");
             }
 
         },

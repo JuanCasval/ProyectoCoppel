@@ -9,6 +9,7 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="IdRole" ColumnName="IdRole" />
           <ScalarProperty Name="SueldoBase" ColumnName="SueldoBase" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -30,6 +31,7 @@
           <ScalarProperty Name="IdRole" ColumnName="IdRole" />
           <ScalarProperty Name="Cantidad_entregas" ColumnName="Cantidad_entregas" />
           <ScalarProperty Name="IdMes" ColumnName="IdMes" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

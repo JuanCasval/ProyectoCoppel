@@ -6,16 +6,17 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdEmployee" Type="int" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="50" />
-    <Property Name="IdRole" Type="int" />
-    <Property Name="SueldoBase" Type="float" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdRole" Type="int" Nullable="false" />
+    <Property Name="SueldoBase" Type="float" Nullable="false" />
+    <Property Name="estado" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="Months">
     <Key>
       <PropertyRef Name="IdMes" />
     </Key>
     <Property Name="IdMes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Movimientos">
     <Key>
@@ -25,20 +26,21 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="IdEmployee" Type="int" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" />
-    <Property Name="IdRole" Type="int" Nullable="false" />
-    <Property Name="Cantidad_entregas" Type="int" />
-    <Property Name="IdMes" Type="int" />
+    <Property Name="IdRole" Type="int" />
+    <Property Name="Cantidad_entregas" Type="int" Nullable="false" />
+    <Property Name="IdMes" Type="int" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
       <PropertyRef Name="IdRole" />
     </Key>
     <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
-    <Property Name="Bono" Type="float" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bono" Type="float" Nullable="false" />
   </EntityType>
   <Association Name="FK_EmployeeRole">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roles">
@@ -62,7 +64,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MovMonth">
-    <End Role="Months" Type="Self.Months" Multiplicity="0..1" />
+    <End Role="Months" Type="Self.Months" Multiplicity="1" />
     <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Months">
@@ -74,7 +76,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MovRole">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
     <End Role="Movimientos" Type="Self.Movimientos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roles">

@@ -15,6 +15,6 @@ namespace RinkuHR.Models
     {
         public int IdEmployee { get; set; }
         public string Nombre { get; set; }
-        public Nullable<int> IdMes { get; set; }
+        public int IdMes { get; set; }
     }
 }

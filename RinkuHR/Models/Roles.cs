@@ -23,7 +23,7 @@ namespace RinkuHR.Models
     
         public int IdRole { get; set; }
         public string Descripcion { get; set; }
-        public Nullable<double> Bono { get; set; }
+        public double Bono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employees> Employees { get; set; }

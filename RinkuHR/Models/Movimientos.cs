@@ -18,9 +18,10 @@ namespace RinkuHR.Models
         public int Id { get; set; }
         public int IdEmployee { get; set; }
         public string Nombre { get; set; }
-        public int IdRole { get; set; }
-        public Nullable<int> Cantidad_entregas { get; set; }
-        public Nullable<int> IdMes { get; set; }
+        public Nullable<int> IdRole { get; set; }
+        public int Cantidad_entregas { get; set; }
+        public int IdMes { get; set; }
+        public int periodo { get; set; }
     
         public virtual Employees Employees { get; set; }
         public virtual Months Months { get; set; }

@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2e7ee2001ea54a9d86edf611832e7ccd" Name="Diagram1">
+      <Diagram DiagramId="13767e5b931b4a8dade60c84dfba3f6b" Name="Diagram1">
         <EntityTypeShape EntityType="RinkuHRModel.Employees" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RinkuHRModel.Months" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinkuHRModel.Months" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RinkuHRModel.Movimientos" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="RinkuHRModel.Roles" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="RinkuHRModel.FK_EmployeeRole" ManuallyRouted="true" />
-        <AssociationConnector Association="RinkuHRModel.FK_MovEmployee" ManuallyRouted="true" />
-        <AssociationConnector Association="RinkuHRModel.FK_MovMonth" ManuallyRouted="true" />
-        <AssociationConnector Association="RinkuHRModel.FK_MovRole" ManuallyRouted="true" />
+        <AssociationConnector Association="RinkuHRModel.FK_EmployeeRole" ManuallyRouted="false" />
+        <AssociationConnector Association="RinkuHRModel.FK_MovEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="RinkuHRModel.FK_MovMonth" ManuallyRouted="false" />
+        <AssociationConnector Association="RinkuHRModel.FK_MovRole" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
