@@ -72,7 +72,7 @@ namespace RinkuHR.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteEmployee", idEmployeeParameter);
         }
     
-        public virtual int SaveEmployee(Nullable<int> idEmployee, string name, Nullable<int> idRol, Nullable<double> sueldo)
+        public virtual int SaveEmployee(Nullable<int> idEmployee, string name, Nullable<int> idRol)
         {
             var idEmployeeParameter = idEmployee.HasValue ?
                 new ObjectParameter("IdEmployee", idEmployee) :
@@ -86,11 +86,7 @@ namespace RinkuHR.Models
                 new ObjectParameter("IdRol", idRol) :
                 new ObjectParameter("IdRol", typeof(int));
     
-            var sueldoParameter = sueldo.HasValue ?
-                new ObjectParameter("Sueldo", sueldo) :
-                new ObjectParameter("Sueldo", typeof(double));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveEmployee", idEmployeeParameter, nameParameter, idRolParameter, sueldoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveEmployee", idEmployeeParameter, nameParameter, idRolParameter);
         }
     
         public virtual int SaveMovimiento(Nullable<int> idEmployee, Nullable<int> idRol, Nullable<int> cantidadEntregas, Nullable<int> mes)

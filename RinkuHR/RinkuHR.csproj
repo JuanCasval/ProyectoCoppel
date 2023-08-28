@@ -181,10 +181,11 @@
       <DependentUpon>RinkuHR.edmx</DependentUpon>
       <LastGenOutput>RinkuHR1.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\Ajax-Doc.js" />
+    <Content Include="Scripts\General.js" />
     <Content Include="Scripts\Ajax-UI.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\NewEmployee.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -212,6 +213,7 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\General.aspx" />
+    <Content Include="Views\Movements.aspx" />
     <Content Include="Views\NewEmployee.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -230,6 +232,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Clases\Empleados.cs" />
+    <Compile Include="Clases\Movimiento.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,6 +277,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Models\RinkuHR1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RinkuHR.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>RinkuHR.tt</DependentUpon>
     </Compile>
@@ -305,6 +313,13 @@
     </Compile>
     <Compile Include="Views\General.aspx.designer.cs">
       <DependentUpon>General.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Movements.aspx.cs">
+      <DependentUpon>Movements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Movements.aspx.designer.cs">
+      <DependentUpon>Movements.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\NewEmployee.aspx.cs">
       <DependentUpon>NewEmployee.aspx</DependentUpon>

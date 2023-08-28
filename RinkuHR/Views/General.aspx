@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="../CSS/materialize.css" rel="stylesheet" />
     <script src="../Scripts/jquery-3.6.0.js"></script>
-    <script src="../Scripts/Ajax-Doc.js"></script>
+    <script src="../Scripts/General.js"></script>
     <script src="../Scripts/materialize.js"></script>
 
     <title>Rinku HR</title>
@@ -16,23 +16,30 @@
     
 <body>
     <header>
+          <div id="modal1" class="modal modal-fixed-footer" disableBackdropClick>
+            <div class="modal-content">
+
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-red red white-text btn-flat">Cerrar</a>
+            </div>
+          </div>
         <nav>
         <div class="nav-wrapper black" style="padding-left:10px;">
             <a href="#!" class="brand-logo">RinkuHR</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="../NewEmployee.aspx"> Añadir empleado </a></li>
-                <li><a href="../Default.aspx"> Registrar movimiento </a></li>
-                <li><a href="../Contact.aspx"> Sueldos </a></li>
+                <li><a href="NewEmployee.aspx"> Añadir empleado </a></li>
+                <li><a href="Movements.aspx"> Registrar movimiento </a></li>
+                <li><a href="Salarys.aspx"> Sueldos </a></li>
             </ul>
         </div>
         </nav>
 
-
           <ul class="sidenav" id="mobile-demo">
              <li><a href="NewEmployee.aspx"> Añadir empleado </a></li>
-             <li><a href="Default.aspx"> Registrar movimiento </a></li>
-             <li><a href="Contact.aspx"> Sueldos </a></li>
+             <li><a href="Movements.aspx"> Registrar movimiento </a></li>
+             <li><a href="Salarys.aspx"> Sueldos </a></li>
           </ul>
     </header>
      <div class="container">
@@ -42,7 +49,7 @@
         <div class="container" >
             <a class="waves-effect blue darken-3 waves-light btn" href="NewEmployee.aspx"><i class="material-icons left">add_circle</i>Añadir empleado</a>
             <br />
-            <table id="Contenedor" class="Contenedor highlight responsive-table">
+            <table id="Contenedor" class="Contenedor highlight responsive-table " >
                 <tr>
                     <th>Número de Empleado</th>
                     <th>Nombre</th>
@@ -53,7 +60,13 @@
             </table>
         </div>
     </form>
-    <a name="Ver Datos" href="#modal1" class="btn-floating btn waves-effect waves-light blue white-text modal-trigger" onclick="verData()"><i class="material-icons large">info_outline</i></a>
-</body>
     
+</body>
+    <script type="text/javascript">
+         $(document).ready(function () {
+             $('#modal1').modal({
+                 dismissible: false
+             });
+         });
+    </script>
 </html>

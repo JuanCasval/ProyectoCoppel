@@ -31,35 +31,10 @@ function updateProspect(Id) {
 }
 
 
-let contador = 0;
-function addFile() {
-
-    $('#files').append("<div class='row col s9' style='display:none;' id='rowFile"+contador+"'><div class='col s4'><input id='file" + contador + "' type='text' class='validate'><label for='file" + contador + "'>Nombre del Archivo</label></div>"
-        + "<div class='file-field input-field col s5'>"
-        + "<div class='btn blue'>"
-        + "<span>Archivo</span>"
-        + "<input type='file' id='fileUpload" + contador + "'>"
-        + "</div>"
-        + "<div class='file-path-wrapper'>"
-        + "<input class='file-path validate' type='text' id='path" + contador + "'>"
-        + "</div>"
-        + "</div>"
-        + "<a name='close' class='btn waves-effect red darken-4' id='close" + contador + "' onclick='removeFile(" + contador + ")' ><i class='material-icons'>close</i></a>"
-        + "</div > ");
-     $("#rowFile" + contador).show('slow');
-
-    contador++;
-}
-
-
 function reload() {
     location.reload();
 }
 
-function removeFile(id) {
-    $("#rowFile" + id).remove();
-   
-}
 
 function saveProspect() {
     var avanzar = false;
@@ -148,48 +123,6 @@ function saveProspect() {
    
 }
 
-function savePaths(data, fileName) {
-    var archivo = { Id: data, Name: fileName };
-    $('#resultado').empty();
-    $.ajax({
-        type: 'POST',
-        url: 'api/Prospect/PostWithD',
-        data: JSON.stringify(archivo),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        success: function (data) {
-            if (data = true) {
-                console.log("Rutas guardadas...")
-               
-            } else {
-                
-                $('#resultado').append('Ocurrio un error al guardar las rutas.');
-            
-            }
-        },
-        error: function () {
-            $('#resultado').append('Ocurrio un error  al guardar las rutas. ');
-        }
-    });
-}
-
-function uploadFiles(formData) {
-    $.ajax({
-        url: "api/Prospect/UploadFiles",
-        method: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            console.log("archivos guardados con exito..")
-        },
-        error: function (data) {
-
-            $('#resultado').append('Ocurrio un error al guardar los documentos.');
-        }
-    })
-    contador = 0;
-}
 
 function btnCancel() {
     $('#question').empty();

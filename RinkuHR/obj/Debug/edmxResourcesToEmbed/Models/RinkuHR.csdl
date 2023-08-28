@@ -133,7 +133,6 @@
       <Parameter Name="IdEmployee" Mode="In" Type="Int32" />
       <Parameter Name="Name" Mode="In" Type="String" />
       <Parameter Name="IdRol" Mode="In" Type="Int32" />
-      <Parameter Name="Sueldo" Mode="In" Type="Double" />
     </FunctionImport>
     <FunctionImport Name="SaveMovimiento">
       <Parameter Name="IdEmployee" Mode="In" Type="Int32" />

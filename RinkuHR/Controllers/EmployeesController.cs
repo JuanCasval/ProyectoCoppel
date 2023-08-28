@@ -22,9 +22,9 @@ namespace RinkuHR.Controllers
         public IEnumerable<Empleados> GetAll() 
         { 
             List<Empleados> employeesData = new List<Empleados>();
-
             var queryEmployees = from a in db.Employees
                                  join b in db.Roles on a.IdRole equals b.IdRole
+                                 where a.estado == "A"
                                  select new Empleados {
                                      Id = a.Id,
                                      IdEmployee = a.IdEmployee,
@@ -32,10 +32,7 @@ namespace RinkuHR.Controllers
                                      Role = b.Descripcion,
                                      SueldoBase = a.SueldoBase
                                  };
-
             employeesData = queryEmployees.ToList(); 
-            
-            // var employeesData = _employees.getData().ToList();
             return employeesData;
         }
 
@@ -52,16 +49,35 @@ namespace RinkuHR.Controllers
         // POST: api/Employees/SaveEmployee
         [HttpPost]
         [Route("api/employees/SaveEmployee")]
-        public Employees SaveEmployee(int IdEmpleado, string Nombre, int IdRole, float SueldoBase)
+        public Empleados SaveEmployee(Empleados emp)
         {
-            _employees.IdEmployee = IdEmpleado;
-            _employees.Nombre = Nombre;
-            _employees.IdRole = IdRole;
-            _employees.SueldoBase = SueldoBase;
+            int? validacion = db.BuscarId(emp.IdEmployee).FirstOrDefault();
+            Empleados obj = new Empleados();
+            int IdEmployee = emp.IdEmployee;
+            string Name = emp.Nombre;
+            int rol = emp.IdRole;
 
-            db.SaveEmployee(_employees.IdEmployee, _employees.Nombre, _employees.IdRole, _employees.SueldoBase);
-            db.SaveChanges();
-            return _employees;
+            if (validacion == null)
+            {
+                
+                db.SaveEmployee(IdEmployee, Name, rol);
+                db.SaveChanges();
+
+                var queryEmployees = from a in db.Employees
+                                     join b in db.Roles on a.IdRole equals b.IdRole
+                                     where a.IdEmployee == IdEmployee
+                                     select new Empleados
+                                     {
+                                         Id = a.Id,
+                                         IdEmployee = a.IdEmployee,
+                                         Nombre = a.Nombre,
+                                         Role = b.Descripcion,
+                                         SueldoBase = a.SueldoBase
+                                     };
+                obj = queryEmployees.FirstOrDefault();
+            }
+
+            return obj;
         }
 
       

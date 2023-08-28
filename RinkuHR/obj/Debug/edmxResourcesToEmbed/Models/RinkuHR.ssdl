@@ -104,7 +104,6 @@
     <Parameter Name="IdEmployee" Type="int" Mode="In" />
     <Parameter Name="Name" Type="varchar" Mode="In" />
     <Parameter Name="IdRol" Type="int" Mode="In" />
-    <Parameter Name="Sueldo" Type="float" Mode="In" />
   </Function>
   <Function Name="SaveMovimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdEmployee" Type="int" Mode="In" />
