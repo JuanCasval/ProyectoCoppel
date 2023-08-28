@@ -17,47 +17,25 @@ $(document).ready(function () {
     $('.sidenav').sidenav();
 });
 
-//Buscar empleado
-function verDatos() {
-    
-
-        $.ajax({
-            type: 'GET',
-            url: '../api/employees/GetWithId',
-            data: { Id: Id },
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function (result) {
-                var item = result;
-                if (item == Id) {
-                    $(".modal-content").append(
-                        "<h4>El número de empleado ingresado ya ha sido registrado</h4>"
-                    );
-                } else {
-                    saveEmployee(Id,Nombre,rol);
-                }
-            },
-            error: function () {
-                alert(error);
-            }
-        });   
-}
-
 //Funcion para guardar nuevo empleado
 function saveEmployee() {
 
-    $(".modal-content").empty();
-    $(".modal-content").append("<h4 style='bold' id='resultado'></h4><br/>");
+    $("#mod-result").empty();
+    $("#mod-result").append("<h4 style='bold' id='resultado'></h4><br/>");
     if ($('#numero').val() == "" || $('#numero').val() == null) {
-        $(".modal-content").append(
+        $("#mod-result").append(
             "<h4>Por favor ingrese el número de empleado</h4>"
         );
+    } else if ($('#numero').val() < 1) {
+        $("#mod-result").append(
+            "<h4>Por favor ingrese un número de empleado valido</h4>"
+        );
     } else if ($('#nombre').val() == "" || $('#nombre').val() == null) {
-        $(".modal-content").append(
+        $("#mod-result").append(
             "<h4>Por favor ingrese el nombre del empleado</h4>"
         );
     } else if (!$('#RolCheck1').is(':checked') && !$('#RolCheck2').is(':checked') && !$('#RolCheck3').is(':checked')) {
-        $(".modal-content").append(
+        $("#mod-result").append(
             "<h4>Por favor seleccione el rol del empleado</h4>"
         );
     } else {
@@ -85,7 +63,7 @@ function saveEmployee() {
             dataType: 'json',
             success: function (data) {
                 if (data.Id > 0) {                 
-                        $(".modal-content").append(
+                        $("#mod-result").append(
                             "<h4 style='bold'>NúmeroEmpleado: <p>" + data.IdEmployee + "</p></h4>" +
                         "<h4 style='bold'>Nombre: <p>" + data.Nombre + "</p></h4>"
                         );
@@ -109,6 +87,11 @@ function saveEmployee() {
         });
     }
     
+}
+
+function btnCancel() {
+    $('#question').empty();
+    $('#question').append('Esta seguro que desea cancelar el registro?, se perderan los cambios');
 }
 
 function valideKey(evt) {

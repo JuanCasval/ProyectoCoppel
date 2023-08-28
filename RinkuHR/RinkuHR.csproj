@@ -185,6 +185,7 @@
     <Content Include="Scripts\Ajax-UI.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Movements.js" />
     <Content Include="Scripts\NewEmployee.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\materialize.js" />

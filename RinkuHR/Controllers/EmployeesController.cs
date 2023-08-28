@@ -25,6 +25,7 @@ namespace RinkuHR.Controllers
             var queryEmployees = from a in db.Employees
                                  join b in db.Roles on a.IdRole equals b.IdRole
                                  where a.estado == "A"
+                                 orderby a.IdEmployee
                                  select new Empleados {
                                      Id = a.Id,
                                      IdEmployee = a.IdEmployee,
@@ -39,11 +40,23 @@ namespace RinkuHR.Controllers
         // GET: api/Employees
         [HttpGet]
         [Route("api/employees/GetWithId")]
-        public int? GetWithId(int Id)
+        public Empleados GetWithId(int Id)
         {
-            int? value = 0;
-            value = db.BuscarId(Id).FirstOrDefault();
-            return value;
+            Empleados employeesData = new Empleados();
+            var queryEmployees = from a in db.Employees
+                                 join b in db.Roles on a.IdRole equals b.IdRole
+                                 where a.IdEmployee == Id
+                                 select new Empleados
+                                 {
+                                     Id = a.Id,
+                                     IdEmployee = a.IdEmployee,
+                                     Nombre = a.Nombre,
+                                     Role = b.Descripcion,
+                                     SueldoBase = a.SueldoBase,
+                                     IdRole = a.IdRole
+                                 };
+            employeesData = queryEmployees.FirstOrDefault();
+            return employeesData;
         }
 
         // POST: api/Employees/SaveEmployee
@@ -59,7 +72,6 @@ namespace RinkuHR.Controllers
 
             if (validacion == null)
             {
-                
                 db.SaveEmployee(IdEmployee, Name, rol);
                 db.SaveChanges();
 

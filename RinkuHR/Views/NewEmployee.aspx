@@ -16,7 +16,7 @@
      <header>
          <!-- Modal Structure -->
     <div id="modal_result" class="modal col s6 " disableBackdropClick>
-        <div class="modal-content">
+        <div class="modal-content" id="mod-result">
           <h4 id="resultado"></h4>
         </div>
         <div class="modal-footer">
@@ -25,11 +25,11 @@
     </div>
 
     <div id="modal_question" class="modal col s6 " disableBackdropClick>
-        <div class="modal-content">
+        <div class="question-content" id="mod-question">
           <h4 id="question"></h4>
         </div>
         <div class="modal-footer">
-          <a href="Index.aspx" class="modal-action modal-close waves-effect waves-blue blue white-text btn-flat modal-trigger" >Si</a>
+          <a href="General.aspx" class="modal-action modal-close waves-effect waves-blue blue white-text btn-flat modal-trigger" >Si</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-red red white-text btn-flat modal-trigger" >No</a>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <form id="form1" runat="server">
         <div class="row">
             <div class="input-field col s4">
-              <input id="numero" type="text" class="validate"  maxlength="5" onkeypress="return valideKey(event);" required>
+              <input id="numero" type="text" class="validate"  maxlength="9" onkeypress="return valideKey(event);" required>
               <label for="numero">Numero de empleado</label>
             </div>
             <div class="input-field col s4">
